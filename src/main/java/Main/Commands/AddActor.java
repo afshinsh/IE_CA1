@@ -1,10 +1,12 @@
 package Main.Commands;
 
 import Main.Interfaces.CMD;
+import Main.Interfaces.EXC;
 import Storage.Storage;
 
 @CMD(resource = "addActor")
 public class AddActor {
-    Storage s = new Storage();
-    
+    @EXC
+    public void addActor(String JsonInput) {
+    }
 }

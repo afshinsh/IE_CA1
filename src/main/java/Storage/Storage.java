@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
-    public  List<Movie> Movies = new ArrayList<>();
-    public  List<User> Users = new ArrayList<>();
-    public  List<Actor> Actors = new ArrayList<>();
-    public void add(){
-        return;
+
+    static public class Database{
+        public static List<Movie> Movies = new ArrayList<>();
+        public static List<User> Users = new ArrayList<>();
+        public static List<Actor> Actors = new ArrayList<>();
+
     }
+
 }
