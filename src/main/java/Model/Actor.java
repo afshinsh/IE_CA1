@@ -1,5 +1,7 @@
 package Model;
 
+import Storage.Storage;
+
 import java.util.Date;
 
 public class Actor {
@@ -13,5 +15,4 @@ public class Actor {
     public String Name;
     public String BirthDate;
     public String Nationality;
-
 }
