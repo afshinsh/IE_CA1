@@ -4,7 +4,6 @@ import Main.Interfaces.CMD;
 import Main.Interfaces.EXC;
 import Model.Actor;
 import Storage.Storage;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
@@ -12,7 +11,7 @@ import org.json.simple.JSONValue;
 public class AddActor {
     @EXC
     public void addActor(String JsonInput) {
-        ObjectMapper objectMapper = new ObjectMapper();
+
         Object obj= JSONValue.parse(JsonInput);
         JSONObject jsonObject = (JSONObject) obj;
         try{
@@ -22,11 +21,9 @@ public class AddActor {
                     (String) jsonObject.get("birthDate"),
                     (String) jsonObject.get("nationality")
             );
-            int index = Storage.Database.Actors.indexOf(actor);
-            if(index > 0)
-                Storage.Database.Actors.set(index, actor);
-            else
-                Storage.Database.Actors.add(actor);
+
+
+            Storage.Database.AddActor(actor);
 
         }
         catch (Exception e){
