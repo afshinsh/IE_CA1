@@ -19,17 +19,18 @@ public class Command {
 
     private static String CleanUpCommand(String commandLine) {
         int whiteSpace = 0;
-        for (char c : commandLine.toCharArray())
-            if (c == ' ')
-                whiteSpace++;
+        for (char c : commandLine.toCharArray()){
+            if(c != ' ')
+                break;
+            whiteSpace++;
+        }
+
         return commandLine.substring(whiteSpace);
     }
 
     public void Process(String commandLine) throws Exception{
-        System.out.println(commandLine);
 
         commandLine = CleanUpCommand(commandLine);
-        System.out.println(commandLine);
         String[] commandParts = commandLine.split(" ", 2);
 
         this.command = commandParts[0];
@@ -38,6 +39,8 @@ public class Command {
     }
 
     private void ExecuteCommand() throws Exception {
+        System.out.println("Command : " + this.command);
+        System.out.println("Input : " + this.JsonInput);
         for (Class<?> cmdClass : cmds) {
             CMD cmdAnnotation = cmdClass.getAnnotation(CMD.class);
             String resource = cmdAnnotation.resource();
@@ -49,6 +52,8 @@ public class Command {
                 if (methodAnnotation == null)
                     continue;
                 Object newInstance = cmdClass.getDeclaredConstructor().newInstance();
+                System.out.println("Here");
+
                 method.invoke(newInstance, this.JsonInput);
                 return;
             }
