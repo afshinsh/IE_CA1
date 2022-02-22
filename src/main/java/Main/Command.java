@@ -52,8 +52,6 @@ public class Command {
                 if (methodAnnotation == null)
                     continue;
                 Object newInstance = cmdClass.getDeclaredConstructor().newInstance();
-                System.out.println("Here");
-
                 method.invoke(newInstance, this.JsonInput);
                 return;
             }

@@ -21,15 +21,11 @@ public class AddActor {
                     (String) jsonObject.get("birthDate"),
                     (String) jsonObject.get("nationality")
             );
-
-
             Storage.Database.AddActor(actor);
-
         }
         catch (Exception e){
             System.out.println("Bad Input!");
         }
-
 
         System.out.println(Storage.Database.Actors.size());
 

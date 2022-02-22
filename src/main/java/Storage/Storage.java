@@ -13,7 +13,7 @@ public class Storage {
         public static List<Movie> Movies = new ArrayList<>();
         public static List<User> Users = new ArrayList<>();
         public static List<Actor> Actors = new ArrayList<>();
-
+        public static int UserId = 1;
         public static void AddActor(Actor actor){
             for (Actor act: Actors) {
                 if(act.Id == actor.Id){
@@ -32,6 +32,11 @@ public class Storage {
                 }
             }
             Movies.add(movie);
+        }
+
+        public static void AddUser(User user){
+            user.Id = UserId++;
+            Users.add(user);
         }
 
     }
