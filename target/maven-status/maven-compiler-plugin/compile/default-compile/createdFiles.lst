@@ -1,0 +1,6 @@
+Model\Rate.class
+Model\User.class
+Model\Vote.class
+Model\Comment.class
+Model\Movie.class
+Model\Actor.class
