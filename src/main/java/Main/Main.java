@@ -1,8 +1,5 @@
 package Main;
 
-import Storage.Storage;
-import org.json.simple.JSONObject;
-
 import java.util.Scanner;
 
 public class Main {
@@ -11,7 +8,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         while (sc.hasNext()) {
-            cmd.proccess(sc.nextLine());
+            cmd.Process(sc.nextLine());
         }
     }
 }
