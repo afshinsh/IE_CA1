@@ -7,17 +7,11 @@ import java.util.Map;
 
 public class Response {
 
-    public static void CreateMessageResponse(boolean success, String message){
+    public static void CreateResponse(boolean success, String data){
         Map obj=new HashMap();
-        obj.put("success", new Boolean(success));
-        obj.put("message", message);
+        obj.put("success", success);
+        obj.put("data", data);
         System.out.println(JSONValue.toJSONString(obj));
     }
 
-    public static void CreateDataResponse(boolean success, String jsonData){
-        Map obj=new HashMap();
-        obj.put("success", new Boolean(success));
-        obj.put("message", jsonData);
-        System.out.println(JSONValue.toJSONString(obj));
-    }
 }

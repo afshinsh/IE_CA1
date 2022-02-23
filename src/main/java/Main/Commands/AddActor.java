@@ -25,11 +25,11 @@ public class AddActor {
             Storage.Database.AddActor(actor);
         }
         catch (Exception e){
-            Response.CreateMessageResponse(false, "Bad Input!");
+            Response.CreateResponse(false, "Bad Input!");
 
         }
 
-        Response.CreateMessageResponse(true, "Actor Added Succussfully!");
+        Response.CreateResponse(true, "Actor Added Succussfully!");
         System.out.println(Storage.Database.Actors.size());
 
     }

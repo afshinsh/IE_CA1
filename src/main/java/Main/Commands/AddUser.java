@@ -24,9 +24,9 @@ public class AddUser {
             );
             Storage.Database.AddUser(user);
         } catch (Exception e) {
-            Response.CreateMessageResponse(false, "Bad Input!");
+            Response.CreateResponse(false, "Bad Input!");
         }
-        Response.CreateMessageResponse(true, "User Added Succussfully!");
+        Response.CreateResponse(true, "User Added Succussfully!");
         System.out.println(Storage.Database.Users.size());
     }
 }
