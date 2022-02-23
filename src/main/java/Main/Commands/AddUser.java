@@ -2,6 +2,7 @@ package Main.Commands;
 
 import Main.Interfaces.CMD;
 import Main.Interfaces.EXC;
+import Main.Response;
 import Model.User;
 import Storage.Storage;
 import org.json.simple.JSONObject;
@@ -23,9 +24,9 @@ public class AddUser {
             );
             Storage.Database.AddUser(user);
         } catch (Exception e) {
-            System.out.println("Bad Input!");
+            Response.CreateMessageResponse(false, "Bad Input!");
         }
-
+        Response.CreateMessageResponse(true, "User Added Succussfully!");
         System.out.println(Storage.Database.Users.size());
     }
 }

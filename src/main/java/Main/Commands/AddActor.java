@@ -2,6 +2,7 @@ package Main.Commands;
 
 import Main.Interfaces.CMD;
 import Main.Interfaces.EXC;
+import Main.Response;
 import Model.Actor;
 import Storage.Storage;
 import org.json.simple.JSONObject;
@@ -24,9 +25,11 @@ public class AddActor {
             Storage.Database.AddActor(actor);
         }
         catch (Exception e){
-            System.out.println("Bad Input!");
+            Response.CreateMessageResponse(false, "Bad Input!");
+
         }
 
+        Response.CreateMessageResponse(true, "Actor Added Succussfully!");
         System.out.println(Storage.Database.Actors.size());
 
     }
