@@ -2,6 +2,7 @@ package Main.Commands;
 
 import Main.Interfaces.CMD;
 import Main.Interfaces.EXC;
+import Main.Response;
 import Model.Actor;
 import Model.Movie;
 import Storage.Storage;
@@ -18,7 +19,6 @@ public class AddMovie {
         Object obj=JSONValue.parse(JsonInput);
         JSONObject jsonObject = (JSONObject) obj;
 
-
         try{
             Movie movie = new Movie(
                     Integer.valueOf(jsonObject.get("id").toString()),
@@ -33,15 +33,18 @@ public class AddMovie {
                     (long) jsonObject.get("duration"),
                     Integer.valueOf(jsonObject.get("ageLimit").toString())
             );
-            Storage.Database.AddMovie(movie);
+            try{
+                Storage.Database.AddMovie(movie);
+                Response.CreateResponse(true, "movie added successfully");
+            }
+            catch (Exception e){
+                Response.CreateResponse(false, e.getMessage());
 
-            /*ObjectMapper mapper = new ObjectMapper();
-            String jsonInString = mapper.writeValueAsString(movie);
+            }
 
-            System.out.println(jsonInString);*/
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
+            Response.CreateResponse(false, "InvalidCommand");
         }
     }
 }

@@ -8,6 +8,7 @@ import Storage.Storage;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
+
 @CMD(resource = "addUser")
 public class AddUser {
     @EXC
@@ -23,10 +24,10 @@ public class AddUser {
                     (String) jsonObject.get("birthDate")
             );
             Storage.Database.AddUser(user);
+            Response.CreateResponse(true, "user added successfully");
+
         } catch (Exception e) {
-            Response.CreateResponse(false, "Bad Input!");
+            Response.CreateResponse(false, "InvalidCommand");
         }
-        Response.CreateResponse(true, "User Added Succussfully!");
-        System.out.println(Storage.Database.Users.size());
     }
 }

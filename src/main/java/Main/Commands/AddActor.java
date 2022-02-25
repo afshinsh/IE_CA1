@@ -23,14 +23,14 @@ public class AddActor {
                     (String) jsonObject.get("nationality")
             );
             Storage.Database.AddActor(actor);
+            Response.CreateResponse(true, "actor added successfully");
+
         }
         catch (Exception e){
-            Response.CreateResponse(false, "Bad Input!");
+            Response.CreateResponse(false, "InvalidCommand");
 
         }
 
-        Response.CreateResponse(true, "Actor Added Succussfully!");
-        System.out.println(Storage.Database.Actors.size());
 
     }
 

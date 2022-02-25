@@ -8,13 +8,13 @@ import java.lang.reflect.Method;
 import java.util.Set;
 
 public class Command {
-    String command;
+    String Command;
     String JsonInput;
-    Set<Class<?>> cmds;
+    Set<Class<?>> CMDs;
 
     public Command() {
         Reflections reflections = new Reflections("Main");
-        this.cmds = reflections.getTypesAnnotatedWith(CMD.class);
+        this.CMDs = reflections.getTypesAnnotatedWith(CMD.class);
     }
 
     private static String CleanUpCommand(String commandLine) {
@@ -33,18 +33,18 @@ public class Command {
         commandLine = CleanUpCommand(commandLine);
         String[] commandParts = commandLine.split(" ", 2);
 
-        this.command = commandParts[0];
-        this.JsonInput = (commandParts.length > 1) ? commandParts[1] : null;
+        Command = commandParts[0];
+        JsonInput = (commandParts.length > 1) ? commandParts[1] : null;
         ExecuteCommand();
     }
 
     private void ExecuteCommand() throws Exception {
-        System.out.println("Command : " + this.command);
-        System.out.println("Input : " + this.JsonInput);
-        for (Class<?> cmdClass : cmds) {
+        /*System.out.println("Command : " + this.command);
+        System.out.println("Input : " + this.JsonInput);*/
+        for (Class<?> cmdClass : CMDs) {
             CMD cmdAnnotation = cmdClass.getAnnotation(CMD.class);
             String resource = cmdAnnotation.resource();
-            if (!resource.equals(this.command))
+            if (!resource.equals(Command))
                 continue;
             Method[] methods = cmdClass.getMethods();
             for (Method method : methods) {
@@ -52,9 +52,10 @@ public class Command {
                 if (methodAnnotation == null)
                     continue;
                 Object newInstance = cmdClass.getDeclaredConstructor().newInstance();
-                method.invoke(newInstance, this.JsonInput);
+                method.invoke(newInstance, JsonInput);
                 return;
             }
         }
+        Response.CreateResponse(false, "InvalidCommand");
     }
 }

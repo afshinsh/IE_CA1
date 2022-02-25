@@ -1,13 +1,12 @@
 package Model;
 
-public class Rate {
-    public Rate(String userEmail, int movieId, int score){
+public class WatchList {
+
+    public WatchList(String userEmail, int movieId){
         UserEmail = userEmail;
         MovieId = movieId;
-        Score = score;
     }
 
     public String UserEmail;
     public int MovieId;
-    public int Score;
 }

@@ -3,36 +3,34 @@ package Main.Commands;
 import Main.Interfaces.CMD;
 import Main.Interfaces.EXC;
 import Main.Response;
-import Model.Rate;
+import Model.WatchList;
 import Storage.Storage;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
-@CMD(resource = "rateMovie")
-public class RateMovie {
+
+@CMD(resource = "removeFromWatchList")
+public class RemoveFromWatchList {
     @EXC
-    public void rateMovie(String JsonInput) {
+    public void removeFromWatchList(String JsonInput) {
         Object obj = JSONValue.parse(JsonInput);
         JSONObject jsonObject = (JSONObject) obj;
         try {
-            Rate rate = new Rate(
+            WatchList watchList = new WatchList(
                     (String) jsonObject.get("userEmail"),
-                    Integer.valueOf(jsonObject.get("movieId").toString()),
-                    Integer.valueOf(jsonObject.get("score").toString())
+                    Integer.valueOf(jsonObject.get("movieId").toString())
             );
+            try{
+                Storage.Database.RemoveFromWatchList(watchList);
+                Response.CreateResponse(true, "movie removed from watchlist successfully");
 
-            try {
-                Storage.Database.AddRateMovie(rate);
-                Response.CreateResponse(true, "movie rated successfully");
             }catch (Exception e){
                 Response.CreateResponse(false, e.getMessage());
 
             }
 
-
         } catch (Exception e) {
             Response.CreateResponse(false, "InvalidCommand");
-
         }
     }
 }
